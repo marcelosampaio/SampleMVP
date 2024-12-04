@@ -18,7 +18,9 @@ class ItemListPresenter: ItemListPresenterProtocol {
     }
     
     func didSelectItem(at index: Int) {
+        guard index >= 0 && index < items.count else { return }
         let item = items[index]
         view?.navigateToDetail(with: item)
     }
 }
+

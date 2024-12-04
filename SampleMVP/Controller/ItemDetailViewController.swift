@@ -20,13 +20,26 @@ class ItemDetailViewController: UIViewController {
     }
     
     private func setupUI() {
-        guard let item = item else { return }
-        title = item.title
-        
-        let label = UILabel(frame: view.bounds)
-        label.text = item.description
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        view.addSubview(label)
+        // Use optional binding to avoid force unwrapping
+        if let item = item {
+            title = item.title
+            
+            let label = UILabel(frame: view.bounds)
+            label.text = item.description
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            
+            view.addSubview(label)
+        } else {
+            title = "Unknown Item"
+            
+            let label = UILabel(frame: view.bounds)
+            label.text = "Item details not available."
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            
+            view.addSubview(label)
+        }
     }
 }
+
